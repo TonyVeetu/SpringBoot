@@ -9,6 +9,7 @@ import uteevbkru.domain.Message;
 import uteevbkru.repos.MessageRepo;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -46,6 +47,18 @@ public class GreetingController {
             String text1 = fromDB.getText();
             Integer id1 = fromDB.getId();
             System.out.println("текст = " + text1 + ", тег = " + tag1 + ", ад = " + id1);
+        }
+        model.put("Messages", messages);
+        return "main";
+    }
+
+    @PostMapping("/filter")
+    public String filter(@RequestParam String filter, Map<String, Object> model) {
+        Iterable<Message> messages;
+        if (filter != null && !filter.isEmpty()) {
+            messages = messageRepo.findByTag(filter);
+        } else{
+            messages = messageRepo.findAll();
         }
         model.put("Messages", messages);
         return "main";

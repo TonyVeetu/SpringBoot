@@ -10,6 +10,10 @@
     </div>
 
     <div>Список сообщений</div>
+    <form method="post" action="filter">
+        <input type="text" name="filter">
+        <button type="submit">Найти</button>
+    </form>
     {{#Messages}}
         <div>
             <b>{{id}}</b>
