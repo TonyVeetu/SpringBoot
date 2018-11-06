@@ -1,14 +1,21 @@
 package uteevbkru;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import uteevbkru.domain.Message;
+import uteevbkru.repos.MessageRepo;
 
+import java.util.Iterator;
 import java.util.Map;
 
 @Controller
 public class GreetingController {
+
+    @Autowired
+    private MessageRepo messageRepo;
 
     @GetMapping("/greeting")
     public String greeting(
@@ -20,8 +27,27 @@ public class GreetingController {
 
     @GetMapping
     public String main( Map<String, Object> model) {
-        model.put("some", "Hello,   TonyVeetu!");
+        model.put("messages", messageRepo);
         model.put("cut", "Are you here?");
+        return "main";
+    }
+
+    @PostMapping
+    public String add(@RequestParam String text, @RequestParam String tag,  Map<String, Object> model) {
+        Message mess = new Message(text,tag);
+        messageRepo.save(mess);
+        System.out.println(text+", "+tag);
+
+        Iterable<Message> messages = messageRepo.findAll();
+        Iterator<Message> iterator = messages.iterator();
+        while(iterator.hasNext()) {
+            Message fromDB = iterator.next();
+            String tag1 = fromDB.getTag();
+            String text1 = fromDB.getText();
+            Integer id1 = fromDB.getId();
+            System.out.println("текст = " + text1 + ", тег = " + tag1 + ", ад = " + id1);
+        }
+        model.put("Messages", messages);
         return "main";
     }
 }
