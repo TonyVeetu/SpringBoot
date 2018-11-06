@@ -1,0 +1,8 @@
+### Apache Maven ###
+target/
+
+### JetBrains IntelliJ IDEA ###
+.idea/
+*.iml
+*ipr
+*.iws
