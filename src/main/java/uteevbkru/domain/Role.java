@@ -1,11 +1,13 @@
 package uteevbkru.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import org.springframework.security.core.GrantedAuthority;
 
-//@Entity
-//@Table(name = "user_role")
-public enum Role {
+public enum Role implements GrantedAuthority {
     USER,
     ADMIN;
+
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }
