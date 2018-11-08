@@ -26,9 +26,15 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main( Map<String, Object> model) {
-        model.put("messages", messageRepo);
-        model.put("cut", "Are you here?");
+    public String main(@RequestParam(required = false, defaultValue = "") String filter, Map model) {
+        Iterable<Message> messages = messageRepo.findAll();
+        if (filter != null && !filter.isEmpty()) {
+            messages = messageRepo.findByTag(filter);
+        } else{
+            messages = messageRepo.findAll();
+        }
+        model.put("Messages", messages);
+        model.put("filter", filter);
         return "main";
     }
 
@@ -47,19 +53,7 @@ public class MainController {
             String tag1 = fromDB.getTag();
             String text1 = fromDB.getText();
             Integer id1 = fromDB.getId();
-            System.out.println("текст = " + text1 + ", тег = " + tag1 + ", ад = " + id1);
-        }
-        model.put("Messages", messages);
-        return "main";
-    }
-
-    @PostMapping("filter")
-    public String filter(@RequestParam String filter, Map<String, Object> model) {
-        Iterable<Message> messages;
-        if (filter != null && !filter.isEmpty()) {
-            messages = messageRepo.findByTag(filter);
-        } else{
-            messages = messageRepo.findAll();
+            System.out.println("текст = " + text1 + ", тег = " + tag1 + ", ад = " + id1 + ", userName = " + user.getUsername()  + ", userID = " + user.getId());
         }
         model.put("Messages", messages);
         return "main";
