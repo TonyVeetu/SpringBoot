@@ -6,7 +6,10 @@
 5 - Spring Boot Freemarker: подключаем шаблонизатор Freemarker - https://freemarker.apache.org/docs/dgui.html
 6 - Spring Boot Security: добавляем панель администратора и роли пользователей, ограничиваем доступ.
 7 - Spring Boot MVC: загрузка файлов на сервер и раздача статики
-    https://spring.io/guides/gs/uploading-files/
+        https://spring.io/guides/gs/uploading-files/
+8 - Spring Boot: оформляем UI с Bootstrap
+        
+
 
 
 Откуда - канал LetsCode!
