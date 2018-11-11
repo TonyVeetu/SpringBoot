@@ -5,5 +5,8 @@
 4 - Spring Boot Jpa (Hibernate): добавляем связи между таблицами базы данных (one to many).
 5 - Spring Boot Freemarker: подключаем шаблонизатор Freemarker - https://freemarker.apache.org/docs/dgui.html
 6 - Spring Boot Security: добавляем панель администратора и роли пользователей, ограничиваем доступ.
+7 - Spring Boot MVC: загрузка файлов на сервер и раздача статики
+    https://spring.io/guides/gs/uploading-files/
+
 
 Откуда - канал LetsCode!
