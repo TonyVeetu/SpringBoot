@@ -12,10 +12,10 @@
            <input type="password" name="password" class="form-control" placeholder="Password"/>
        </div>
    </div>
-   <input type="hidden" name="_csrf" value="${_csrf.token}"/>
     <#if !isRegisterForm>
         <a href="/registration">Add new user</a>
     </#if>
+    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
    <button class="btn btn-primary" type="submit"><#if isRegisterForm>Create<#else>Sign IN</#if></button>
 </form>
 </#macro>

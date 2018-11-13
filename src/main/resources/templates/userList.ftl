@@ -11,7 +11,7 @@ List of Users
         <th></th>
     </tr>
     </thead>
-    <tbod>
+    <tbody>
     <#list users as user>
         <tr>
             <td>${user.username}</td>
@@ -19,6 +19,6 @@ List of Users
             <td><a href="/user/${user.id}">Edit</a> </td>
         </tr>
     </#list>
-    </tbod>
+    </tbody>
 </table>
 </@com.page>
