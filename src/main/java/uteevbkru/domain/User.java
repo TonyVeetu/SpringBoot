@@ -16,13 +16,17 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private boolean active;
-    private String email;
-    private String activationCode;
+//    private String email;
+//    private String activationCode;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)//можно юзать LAZY!
     @CollectionTable(name= "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
+    public boolean isAdmin() {
+        return roles.contains(Role.ADMIN);
+    }
 
     public Long getId() {
         return Id;
@@ -89,19 +93,19 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getActivationCode() {
-        return activationCode;
-    }
-
-    public void setActivationCode(String activationCode) {
-        this.activationCode = activationCode;
-    }
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
+//    public String getActivationCode() {
+//        return activationCode;
+//    }
+//
+//    public void setActivationCode(String activationCode) {
+//        this.activationCode = activationCode;
+//    }
 }

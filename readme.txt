@@ -7,7 +7,7 @@
 6 - Spring Boot Security: добавляем панель администратора и роли пользователей, ограничиваем доступ.
 7 - Spring Boot MVC: загрузка файлов на сервер и раздача статики
         https://spring.io/guides/gs/uploading-files/
-8 - Spring Boot: оформляем UI с Bootstrap
+8 - Spring Boot: оформляем UI с Bootstrap - done!
         
 
 

@@ -45,38 +45,47 @@ public class MainController {
         return "main";
     }
 
+    // ОТ раздачи статистики!!!
+//    @PostMapping("/main")
+//    public String add(@AuthenticationPrincipal User user,
+//                      @RequestParam String text,
+//                      @RequestParam String tag,
+//                      Map<String, Object> model,
+//                      @RequestParam("file")MultipartFile file) throws IOException {
+//        Message mess = new Message(user,text,tag);
+//        if(file != null && !file.getOriginalFilename().isEmpty()){
+//            File uploadDir = new File(uploadPath);
+//
+//            if(!uploadDir.exists()){
+//                uploadDir.mkdir();
+//            }
+//            String uuidFile = UUID.randomUUID().toString();
+//            String resultFilename = uuidFile+ "."+file.getOriginalFilename();
+//            file.transferTo(new File(uploadPath + "/" + resultFilename));
+//
+//            mess.setFilename(resultFilename);
+//        }
+//        messageRepo.save(mess);
+//
+//        Iterable<Message> messages = messageRepo.findAll();
+//        model.put("Messages", messages);
+//        return "main";
+//    }
     @PostMapping("/main")
-    public String add(@AuthenticationPrincipal User user,
-                      @RequestParam String text,
-                      @RequestParam String tag,
-                      Map<String, Object> model,
-                      @RequestParam("file")MultipartFile file) throws IOException {
-        Message mess = new Message(user,text,tag);
-        if(file != null && !file.getOriginalFilename().isEmpty()){
-            File uploadDir = new File(uploadPath);
+    public String add(
+            @AuthenticationPrincipal User user,
+            @RequestParam String text,
+            @RequestParam String tag, Map<String, Object> model
+    ) {
+        Message message = new Message(user, text, tag);
 
-            if(!uploadDir.exists()){
-                uploadDir.mkdir();
-            }
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFilename = uuidFile+ "."+file.getOriginalFilename();
-            file.transferTo(new File(uploadPath + "/" + resultFilename));
-
-            mess.setFilename(resultFilename);
-        }
-
-        messageRepo.save(mess);
+        messageRepo.save(message);
 
         Iterable<Message> messages = messageRepo.findAll();
-        Iterator<Message> iterator = messages.iterator();
-        while(iterator.hasNext()) {
-            Message fromDB = iterator.next();
-            String tag1 = fromDB.getTag();
-            String text1 = fromDB.getText();
-            Integer id1 = fromDB.getId();
-            System.out.println("текст = " + text1 + ", тег = " + tag1 + ", ад = " + id1 + ", userName = " + user.getUsername()  + ", userID = " + user.getId());
-        }
-        model.put("Messages", messages);
+
+        model.put("messages", messages);
+
         return "main";
     }
+
 }

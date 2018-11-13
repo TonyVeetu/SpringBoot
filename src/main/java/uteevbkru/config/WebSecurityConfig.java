@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import uteevbkru.service.UserService;
+//import uteevbkru.service.UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -21,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/","/registration", "static", "/activate/*").permitAll()
+                .antMatchers("/","/registration").permitAll()//"static"  "/activate/*"
                 .anyRequest().authenticated()
             .and()
                 .formLogin()

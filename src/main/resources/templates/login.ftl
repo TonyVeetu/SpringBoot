@@ -2,8 +2,6 @@
 <#import "parts/login.ftl" as log>
 
 <@com.page>
-${message!}
-    Login page
-<@log.login "/login" />
-    <a href="/registration">Add new user</a>
+${message?if_exists}
+<@log.login "/login" false/>
 </@com.page>
