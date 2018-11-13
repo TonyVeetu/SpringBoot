@@ -8,6 +8,8 @@
 7 - Spring Boot MVC: загрузка файлов на сервер и раздача статики
         https://spring.io/guides/gs/uploading-files/
 8 - Spring Boot: оформляем UI с Bootstrap - done!
+9 - Spring Boot Mail: рассылка почты пользователям, активация аккаунта. - код пока закоментирован!
+
         
 
 

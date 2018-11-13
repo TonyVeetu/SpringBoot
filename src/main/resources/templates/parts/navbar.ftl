@@ -20,9 +20,9 @@
                     <a class="nav-link" href="/user">User List</a>
                 </li>
             </#if>
-
-            <div class="navbar-text mr-3">${name}</div>
-            <l.logout />
         </ul>
+
+        <div class="navbar-text mr-3">${name}</div>
+        <@l.logout />
     </div>
 </nav>
