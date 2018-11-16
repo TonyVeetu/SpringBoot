@@ -6,3 +6,6 @@ target/
 *.iml
 *ipr
 *.iws
+
+### For static file
+upload/
