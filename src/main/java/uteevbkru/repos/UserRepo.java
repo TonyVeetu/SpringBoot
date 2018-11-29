@@ -6,5 +6,5 @@ import uteevbkru.domain.User;
 public interface UserRepo extends JpaRepository<User, Long> {
     User findByUsername(String username);
 
-//    User findByActivationCode(String code);
+    User findByActivationCode(String code);
 }

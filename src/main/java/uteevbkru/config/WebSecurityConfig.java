@@ -18,11 +18,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
 
+    /** /activate/* - звезда значит что урл может быть длиннее чем просто activate! */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/","/registration", "static").permitAll() // "/activate/*"
+                .antMatchers("/","/registration", "/static/**",  "/activate/*").permitAll()
                 .anyRequest().authenticated()
             .and()
                 .formLogin()

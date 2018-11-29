@@ -1,52 +1,56 @@
-//package uteevbkru.config;
-//
-//import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.mail.javamail.JavaMailSender;
-//import org.springframework.mail.javamail.JavaMailSenderImpl;
-//
-//import java.util.Properties;
-//
-//@Configuration
-//public class MailConfig {
-//    @Value("${ spring.mail.host}")
-//    private String host;
-//
-//    @Value("${spring.mail.username}")
-//    private String username;
-//
-//    @Value("${spring.mail.password}")
-//    private String password;
-//
-//    @Value("${spring.mail.port}")
-//    private int port;
-//
-//    @Value("${spring.mail.protocol}")
-//    private String protocol;
-//
-//    @Value("${mail.debug}")
-//    private String debug;
-//
-//    //todo Настроить почтовый сервер!!
-//
-//    @Bean
-//    public JavaMailSender getMailSender() {
-//        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-//
-//        mailSender.setPort(port);
-//        mailSender.setHost(host);
-//        mailSender.setUsername(username);
-//        mailSender.setPassword(password);
-//
-//        Properties properties = mailSender.getJavaMailProperties();
-//
-//        properties.setProperty("mail.transport.protocol", protocol);
-//        properties.setProperty("mail.debug", debug);
-//
-//        return mailSender;
-//    }
-//}
-//
-//
-//
+package uteevbkru.config;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import java.util.Properties;
+
+/** временный постовый сервис -
+            * https://temp-mail.org/ru/view/a0a6cfdb82ac42e62d87ec27e1d1b159/ */
+
+@Configuration
+public class MailConfig {
+    @Value("${ spring.mail.host}")
+    private String host;
+
+    @Value("${spring.mail.username}")
+    private String username;
+
+    @Value("${spring.mail.password}")
+    private String password;
+
+    @Value("${spring.mail.port}")
+    private int port;
+
+    @Value("${spring.mail.protocol}")
+    private String protocol;
+
+    /** Нет подписи spring */
+    @Value("${mail.debug}")
+    private String debug;
+
+    //todo Настроить почтовый сервер!!
+    @Bean
+    public JavaMailSender getMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+
+        mailSender.setPort(port);
+        mailSender.setHost(host);
+        mailSender.setUsername(username);
+        mailSender.setPassword(password);
+
+        Properties properties = mailSender.getJavaMailProperties();
+
+        properties.setProperty("mail.transport.protocol", protocol);
+        /** Для того чтобы при ошибке писались логи почтовика!! */
+        properties.setProperty("mail.debug", debug);
+        /** В продакшене нужно отключить! */
+
+        return mailSender;
+    }
+}
+
+
+

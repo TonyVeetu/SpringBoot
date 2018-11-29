@@ -9,6 +9,11 @@
         https://spring.io/guides/gs/uploading-files/
 +8 - Spring Boot: оформляем UI с Bootstrap - done!
 - 9 - Spring Boot Mail: рассылка почты пользователям, активация аккаунта. - код пока закоментирован!
+    https://www.youtube.com/watch?v=yBXs_gtSmUc 
+    Временный почтовый сервис - https://temp-mail.org/ru/view/a0a6cfdb82ac42e62d87ec27e1d1b159/!
+
+   !!!__FUTURE__!!!! ___ В будушем будет рассылка писем по крону!!
+
 10 - Spring Boot FlyWay: миграции БД, профиль пользователя
     Spring Boot Web Application (MVC):
         готовим приложение к деплою, наводим порядок:
