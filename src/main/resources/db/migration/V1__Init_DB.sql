@@ -17,6 +17,8 @@ create table usr (
   active bit not null,
   password varchar(255),
   username varchar(255),
+  email varchar(255),
+  activation_code varchar(255),
   primary key (id)
 ) engine=MyISAM;
 

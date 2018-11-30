@@ -12,7 +12,7 @@ import java.util.Properties;
 
 @Configuration
 public class MailConfig {
-    @Value("${ spring.mail.host}")
+    @Value("${spring.mail.host}")
     private String host;
 
     @Value("${spring.mail.username}")
@@ -31,6 +31,12 @@ public class MailConfig {
     @Value("${mail.debug}")
     private String debug;
 
+    @Value("${spring.mail.auth}")
+    private String auth;
+
+    @Value("${spring.mail.smtp.starttls.enable}")
+    private String tls;
+
     //todo Настроить почтовый сервер!!
     @Bean
     public JavaMailSender getMailSender() {
@@ -43,10 +49,15 @@ public class MailConfig {
 
         Properties properties = mailSender.getJavaMailProperties();
 
-        properties.setProperty("mail.transport.protocol", protocol);
+        properties.put("mail.transport.protocol", protocol);
+
         /** Для того чтобы при ошибке писались логи почтовика!! */
-        properties.setProperty("mail.debug", debug);
-        /** В продакшене нужно отключить! */
+            /** В продакшене нужно отключить! */
+        properties.put("mail.debug", debug);
+
+        properties.put("mail.smtp.auth", auth);
+        properties.put("mail.smtp.starttls.enable", tls);
+
 
         return mailSender;
     }
