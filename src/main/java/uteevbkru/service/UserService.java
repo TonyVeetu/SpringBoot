@@ -2,6 +2,7 @@ package uteevbkru.service;
 
 import antlr.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,7 +21,6 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private MailSender mailSender;
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -57,13 +57,10 @@ public class UserService implements UserDetailsService {
     /** проверяет активирован ли пользователь! */
     public boolean isUserActivate(String code) {
         User user = userRepo.findByActivationCode(code);
-
         if(user == null) {
             return false;
         }
-
         user.setActivationCode(null);
-
         userRepo.save(user);
 
         return false;

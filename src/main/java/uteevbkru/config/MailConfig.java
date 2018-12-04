@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+
 import java.util.Properties;
 
 /** временный постовый сервис -
@@ -31,13 +32,12 @@ public class MailConfig {
     @Value("${mail.debug}")
     private String debug;
 
-    @Value("${spring.mail.auth}")
+    @Value("${spring.mail.properties.mail.smtp.auth}")
     private String auth;
 
-    @Value("${spring.mail.smtp.starttls.enable}")
+    @Value("${spring.mail.properties.mail.smtp.starttls.enable}")
     private String tls;
 
-    //todo Настроить почтовый сервер!!
     @Bean
     public JavaMailSender getMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
@@ -48,16 +48,13 @@ public class MailConfig {
         mailSender.setPassword(password);
 
         Properties properties = mailSender.getJavaMailProperties();
-
         properties.put("mail.transport.protocol", protocol);
-
         /** Для того чтобы при ошибке писались логи почтовика!! */
             /** В продакшене нужно отключить! */
+        //todo отключить в продакшене!
         properties.put("mail.debug", debug);
-
         properties.put("mail.smtp.auth", auth);
         properties.put("mail.smtp.starttls.enable", tls);
-
 
         return mailSender;
     }

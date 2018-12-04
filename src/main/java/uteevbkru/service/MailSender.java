@@ -20,7 +20,7 @@ public class MailSender {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
         mailMessage.setFrom(username);
-        mailMessage.setText(themeOfMessage);
+        mailMessage.setTo(mailTo);
         mailMessage.setSubject(themeOfMessage);
         mailMessage.setText(message);
 
